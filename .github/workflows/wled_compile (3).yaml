@@ -30,10 +30,11 @@ jobs:
         cd `cat /tmp/WLEDtemp/wledfoldername`
         npm install
         echo '[env:custom_build]' >>platformio.ini
-        echo 'extends = env:nodemcuv2' >>platformio.ini
-        echo 'build_flags = ${env:nodemcuv2.build_flags} -D WLED_DISABLE_ESPNOW -D WLED_DISABLE_BROWNOUT_DET -D USERMOD_AUTO_SAVE -D USERMOD_ROTARY_ENCODER_UI -D USERMOD_MODE_SORT' >>platformio.ini
+        echo 'extends = env:esp32dev' >>platformio.ini
+        echo 'build_flags = ${env:esp32dev.build_flags} -D WLED_DISABLE_ESPNOW -D WLED_DISABLE_MQTT -D WLED_DISABLE_LOXONE -D WLED_ENABLE_PIXART ${esp32.AR_build_flags} -D USERMOD_AUTO_SAVE -D USERMOD_ROTARY_ENCODER_UI -D USERMOD_MODE_SORT -D USERMOD_PIRSWITCH' >>platformio.ini
         echo 'lib_deps = ' >>platformio.ini
-        echo '  ${env:nodemcuv2.lib_deps}' >>platformio.ini
+        echo '  ${env:esp32dev.lib_deps}' >>platformio.ini
+        echo '  ${esp32.AR_lib_deps}' >>platformio.ini
         echo '  olikraus/U8g2 @ ^2.28.8' >>platformio.ini
         echo '  Wire' >>platformio.ini
         
